@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Forchanclient</string>
+    <string name="boards">List of boards</string>
+    <string name="threads">List of threads</string>
+    <string name="btnBoardSelected">View Threads!!</string>
+    <string-array name="boards" >
+        <item name="a">a</item>
+        <item name="b">b</item>
+        <item name="fit">fit</item>
+    </string-array>
+
+    </resources>
+

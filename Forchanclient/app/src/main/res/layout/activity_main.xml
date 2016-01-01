@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollView"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content">
+
+    <TextView android:text="@string/boards" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblBoards"
+        android:layout_marginTop="23dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/lblthreads"
+        android:layout_alignEnd="@+id/lblthreads" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="List of boards"
+        android:id="@+id/textViewBoards"
+        android:layout_below="@+id/lblBoards"
+        android:layout_alignLeft="@+id/lblBoards"
+        android:layout_alignStart="@+id/lblBoards"
+        android:layout_marginTop="27dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/threads"
+        android:id="@+id/lblthreads"
+        android:layout_below="@+id/btnShowThreads"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="68dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginTop="27dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="List of threads"
+        android:id="@+id/textViewThreads"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/lblthreads"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnBoardSelected"
+        android:id="@+id/btnShowThreads"
+        android:layout_below="@+id/textViewBoards"
+        android:layout_alignRight="@+id/textViewBoards"
+        android:layout_alignEnd="@+id/textViewBoards"
+        android:layout_marginTop="52dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="System info"
+        android:id="@+id/SystemInfo"
+        android:layout_below="@+id/listOfThreads"
+        android:layout_alignRight="@+id/lblBoards"
+        android:layout_alignEnd="@+id/lblBoards" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listOfThreads"
+        android:layout_below="@+id/textViewThreads"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>
+</ScrollView>
