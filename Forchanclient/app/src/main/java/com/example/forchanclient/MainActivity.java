@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // setContentView(R.layout.internettesting);
         // web=(WebView)findViewById(R.id.webView);
         // web.loadUrl("http://www.4chan.org")
@@ -54,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
         threadslist.add("start!!!!!");
 
 
-        systemInfo.append("before async");
+        //systemInfo.append("before async");
         new ParseTask().execute();
-        systemInfo.append("after async");
+       // systemInfo.append("after async");
         for (String st:threadslist) {
             threads.append(st);
         }
@@ -105,27 +109,30 @@ public class MainActivity extends AppCompatActivity {
             JSONObject dataJsonObj = null;
             //String secondName = "";
 
-          //threads.append(strJson);
+           GsonBuilder builder=new GsonBuilder();
+           Gson gson=builder.create();
+           Pages[] pages=gson.fromJson(strJson,Pages[].class);
+           //Pages page=gson.fromJson(strJson,Pages.class)
+
+           threads.append(gson.toJson(pages));
+         // threads.append(strJson);
           // threads.append("end");
 
-           try {
-                dataJsonObj = new JSONObject(strJson);
-                JSONArray pages = dataJsonObj.getJSONArray("page");
-                JSONArray threads = dataJsonObj.getJSONArray("threads");
-               for(int i=0;i<pages.length();i++) {
-                    JSONObject page=pages.getJSONObject(i);
-                    threadslist.add(page.getString("threads"));
-                 }
+          //try {
+                //dataJsonObj = new JSONObject(strJson);
+             //JSONArray pages = dataJsonObj.getJSONArray("page");
+               // JSONArray threads = dataJsonObj.getJSONArray("threads");
+
                //for(int i=0;i<threads.length();i++) {
               //     JSONObject thread=threads.getJSONObject(i);
               //     threadslist.add(thread.toString());
-             //  }
+               //}
 
 
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-           }
+           // } //catch (JSONException e) {
+          //      e.printStackTrace();
+          // }
         }
     }
 }
