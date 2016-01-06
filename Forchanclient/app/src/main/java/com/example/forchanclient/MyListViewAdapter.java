@@ -13,19 +13,19 @@ import java.util.List;
 /**
  * Created by Я on 04.01.2016.
  */
-public class MyListViewAdapter extends ArrayAdapter<Threads> {
+public class MyListViewAdapter extends ArrayAdapter<Post> {
     private  Context context;
     private  ArrayList<Post> values;
 
     //public MyListViewAdapter(Context context, ArrayList<Threads> objects) {
-    public MyListViewAdapter(Context context, Threads[] objects) {
-        super(context,R.layout.thread_item, objects);
+    public MyListViewAdapter(Context context, ArrayList<Post> objects) {
+        super(context, R.layout.thread_item, objects);
         this.context=context;
         values=new ArrayList<Post>();
 
         //values=objects.get(0).posts;
 
-        values=objects[0].posts;
+        values.addAll(objects);
         //values.addAll(objects.get(1).posts);
        // this.values=objects.get(1).posts;
     }

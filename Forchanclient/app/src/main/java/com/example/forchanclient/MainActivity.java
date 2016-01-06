@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> pagesList;
     private ListView threadlistView;
     //private ArrayList<Threads> threadParse;
-    private Threads[] threadParse;
+    private Idiotizm threadParse;
     private TextView systemInfo;
     private ListView pagesListView;
     private MyListViewAdapter newAdapter;
@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
            Log.d("Result from site",strJson);
            GsonBuilder builder=new GsonBuilder();
            Gson gson=builder.create();
-           threadParse=gson.fromJson(strJson,Threads[].class);
+           threadParse = gson.fromJson(strJson, Idiotizm.class);
+           Post post = threadParse.threads.get(0).posts.get(0);
            //threadParse = gson.fromJson(strJson,new TypeToken<List<Threads>>(){}.getType());
           // Log.d("result from site","sizeof jsonthreadparse!!!!"+String.valueOf(threadParse.size()));
            //Log.d("result fom site","0 result!!!"+threadParse.get(0).toString());
@@ -116,8 +117,10 @@ public class MainActivity extends AppCompatActivity {
                    pagesList.add(threadParse[1].posts.get(i).name);
 
            }*/
-          // newAdapter=new MyListViewAdapter(MainActivity.this,threadParse);
-           //threadlistView.setAdapter(newAdapter);
+          newAdapter=new MyListViewAdapter(MainActivity.this, threadParse.threads.get(0).posts);
+
+          threadlistView.setAdapter(newAdapter);
+           //threadlistView.invalidate();
 
 
            //Pages page=gson.fromJson(strJson,Pages.class)
