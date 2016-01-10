@@ -3,6 +3,7 @@ package com.example.forchanclient;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,21 +22,24 @@ import org.jsoup.select.Elements;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    WebView web;
-    private TextView boards;
     private TextView threads;
-    private Button showthreads;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> threadslist;
-    private Elements title;
+    private ArrayList<String> pagesList;
     private ListView threadlistView;
-    private ListView lv;
+    //private ArrayList<Threads> threadParse;
+    private ThreadN threadParse;
     private TextView systemInfo;
+    private ListView pagesListView;
+    private MyListViewAdapter newAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,24 +51,14 @@ public class MainActivity extends AppCompatActivity {
         // web=(WebView)findViewById(R.id.webView);
         // web.loadUrl("http://www.4chan.org")
 
-        boards = (TextView) findViewById(R.id.textViewBoards);
+
         threads = (TextView) findViewById(R.id.textViewThreads);
-        showthreads = (Button) findViewById(R.id.btnShowThreads);
         systemInfo=(TextView)findViewById(R.id.SystemInfo);
         threadlistView=(ListView) findViewById(R.id.listOfThreads);
-
-        threadslist = new ArrayList<String>();
-        //adapter=new ArrayAdapter<String>(this,R.layout.simple_list_item_1 ,threadslist);
-        //threadlistView.setAdapter(adapter);
-        threadslist.add("start!!!!!");
-
-
-        //systemInfo.append("before async");
+        //threadParse=new ArrayList<Threads>();
+        //threadParse=new Threads[400];
         new ParseTask().execute();
-       // systemInfo.append("after async");
-        for (String st:threadslist) {
-            threads.append(st);
-        }
+
 
     }
 
@@ -77,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(Void... params) {
             // получаем данные с внешнего ресурса
             try {
-                URL url = new URL("https://a.4cdn.org/a/threads.json");
+                URL url = new URL("https://a.4cdn.org/a/1.json");
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 //urlConnection.setRequestMethod("GET");
@@ -108,13 +103,30 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(strJson);
             JSONObject dataJsonObj = null;
             //String secondName = "";
-
+           Log.d("Result from site",strJson);
            GsonBuilder builder=new GsonBuilder();
            Gson gson=builder.create();
-           Pages[] pages=gson.fromJson(strJson,Pages[].class);
+           threadParse = gson.fromJson(strJson, ThreadN.class);
+           //Post post = threadParse.threads.get(0).posts.get(0);
+
+           //threadParse = gson.fromJson(strJson,new TypeToken<List<Threads>>(){}.getType());
+          // Log.d("result from site","sizeof jsonthreadparse!!!!"+String.valueOf(threadParse.size()));
+           //Log.d("result fom site","0 result!!!"+threadParse.get(0).toString());
+
+           /*for (int i=0;i<threadParse.length-1;i++)
+           {
+                   pagesList.add(threadParse[1].posts.get(i).name);
+
+           }*/
+          newAdapter=new MyListViewAdapter(MainActivity.this, threadParse.threads.get(0).posts);
+
+          threadlistView.setAdapter(newAdapter);
+           //threadlistView.invalidate();
+
+
            //Pages page=gson.fromJson(strJson,Pages.class)
 
-           threads.append(gson.toJson(pages));
+         //  threads.append(gson.toJson(pages));
          // threads.append(strJson);
           // threads.append("end");
 
@@ -135,4 +147,5 @@ public class MainActivity extends AppCompatActivity {
           // }
         }
     }
+   // public
 }

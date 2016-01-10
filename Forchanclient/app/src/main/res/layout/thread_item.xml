@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anonymous"
+            android:id="@+id/name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/lblPoster"
+            android:layout_toEndOf="@+id/lblPoster" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:id="@+id/date"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_below="@+id/name"
+            android:layout_alignLeft="@+id/name"
+            android:layout_alignStart="@+id/name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number"
+            android:id="@+id/number"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_below="@+id/date"
+            android:layout_alignLeft="@+id/date"
+            android:layout_alignStart="@+id/date" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Comment"
+            android:id="@+id/comment"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/number"
+            android:layout_alignLeft="@+id/lblPostNumber"
+            android:layout_alignStart="@+id/lblPostNumber" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Poster:"
+            android:id="@+id/lblPoster"
+            android:layout_above="@+id/date"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Post date:"
+            android:id="@+id/lblPostDate"
+            android:layout_alignTop="@+id/date"
+            android:layout_alignLeft="@+id/lblPoster"
+            android:layout_alignStart="@+id/lblPoster" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Post number"
+            android:id="@+id/lblPostNumber"
+            android:layout_alignTop="@+id/number"
+            android:layout_alignLeft="@+id/lblPostDate"
+            android:layout_alignStart="@+id/lblPostDate" />
+    </RelativeLayout>
+</LinearLayout>

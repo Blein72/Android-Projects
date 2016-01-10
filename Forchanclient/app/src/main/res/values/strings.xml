@@ -3,10 +3,12 @@
     <string name="boards">List of boards</string>
     <string name="threads">List of threads</string>
     <string name="btnBoardSelected">View Threads!!</string>
+    <string name="welcome_message">Welcome to Client for famoust internet forum 4chan!</string>
+    <string name="board_choose_message">CHosse a board you want to view:</string>
     <string-array name="boards" >
-        <item name="a">a</item>
-        <item name="b">b</item>
-        <item name="fit">fit</item>
+        <item name="a">/a/</item>
+        <item name="b">/b/</item>
+        <item name="fit">/fit/</item>
     </string-array>
 
     </resources>
