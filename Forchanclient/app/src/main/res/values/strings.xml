@@ -5,6 +5,9 @@
     <string name="btnBoardSelected">View Threads!!</string>
     <string name="welcome_message">Welcome to Client for famoust internet forum 4chan!</string>
     <string name="board_choose_message">CHosse a board you want to view:</string>
+    <string name="board_name">Board Name</string>
+    <string name="board_title">Board Title</string>
+    <string name="board_description">Board Description</string>
     <string-array name="boards" >
         <item name="a">/a/</item>
         <item name="b">/b/</item>

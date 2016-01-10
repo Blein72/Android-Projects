@@ -1,4 +1,4 @@
-package com.example.forchanclient;
+package com.example.forchanclient.Adapters;
 
 import android.content.Context;
 import android.text.Html;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.forchanclient.Post;
+import com.example.forchanclient.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +26,8 @@ public class MyListViewAdapter extends ArrayAdapter<Post> {
         super(context, R.layout.thread_item, objects);
         this.context=context;
         values=new ArrayList<Post>();
-
-        //values=objects.get(0).posts;
-
         values.addAll(objects);
-        //values.addAll(objects.get(1).posts);
-       // this.values=objects.get(1).posts;
+
     }
 
     @Override
