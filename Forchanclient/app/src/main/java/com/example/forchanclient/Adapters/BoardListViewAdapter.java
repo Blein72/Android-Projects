@@ -32,7 +32,7 @@ public class BoardListViewAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.thread_item, parent, false);
+        View rowView = inflater.inflate(R.layout.boards_item, parent, false);
         TextView boardName=(TextView)rowView.findViewById(R.id.boardName);
         TextView boardTitle=(TextView)rowView.findViewById(R.id.boardTitle);
         TextView  boardDescription=(TextView)rowView.findViewById(R.id.boardDescription);

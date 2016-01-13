@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/welcome_message"
-        android:id="@+id/textView"
+        android:id="@+id/TextViewTopHeader"
         android:layout_gravity="center_horizontal" />
 
     <TextView
