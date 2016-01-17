@@ -50,9 +50,9 @@
             android:text="Comment"
             android:id="@+id/comment"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/number"
-            android:layout_alignLeft="@+id/lblPostNumber"
-            android:layout_alignStart="@+id/lblPostNumber" />
+            android:layout_below="@+id/Picture"
+            android:layout_alignLeft="@+id/Picture"
+            android:layout_alignStart="@+id/Picture" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,5 +85,14 @@
             android:layout_alignTop="@+id/number"
             android:layout_alignLeft="@+id/lblPostDate"
             android:layout_alignStart="@+id/lblPostDate" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Picture"
+            android:layout_below="@+id/lblPostNumber"
+            android:layout_alignLeft="@+id/lblPostNumber"
+            android:layout_alignStart="@+id/lblPostNumber"
+            android:layout_marginTop="10dp" />
     </RelativeLayout>
 </LinearLayout>

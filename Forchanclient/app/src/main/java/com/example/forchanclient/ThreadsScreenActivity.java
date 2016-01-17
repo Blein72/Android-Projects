@@ -108,7 +108,7 @@ public class ThreadsScreenActivity extends AppCompatActivity {
                postarray.add(t.posts.get(0));
            }
 
-          newAdapter=new PostsAdapter(ThreadsScreenActivity.this, postarray);
+          newAdapter=new PostsAdapter(ThreadsScreenActivity.this, postarray,boardname);
 
           threadlistView.setAdapter(newAdapter);
 

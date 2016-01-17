@@ -28,6 +28,7 @@ public class MainScreenActivity extends Activity {
     private BoardListViewAdapter adapter;
     private TextView info;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

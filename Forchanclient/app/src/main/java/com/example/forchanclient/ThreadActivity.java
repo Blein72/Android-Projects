@@ -83,7 +83,7 @@ public class ThreadActivity extends Activity {
             GsonBuilder builder=new GsonBuilder();
             Gson gson=builder.create();
             thread = gson.fromJson(strJson, Thread.class);
-            adapter=new PostsAdapter(ThreadActivity.this, thread.posts);
+            adapter=new PostsAdapter(ThreadActivity.this, thread.posts,boardname);
             posts.setAdapter(adapter);
 
         }
