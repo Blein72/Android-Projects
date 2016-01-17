@@ -7,5 +7,5 @@ import java.util.ArrayList;
  */
 public class Pages {
     String page;
-    ArrayList<Threads> threads;
+    ArrayList<Thread> threads;
 }

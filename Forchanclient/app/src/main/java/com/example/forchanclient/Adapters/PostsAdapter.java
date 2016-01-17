@@ -12,18 +12,17 @@ import com.example.forchanclient.Post;
 import com.example.forchanclient.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Я on 04.01.2016.
  */
-public class MyListViewAdapter extends ArrayAdapter<Post> {
+public class PostsAdapter extends ArrayAdapter<Post> {
     private  Context context;
     private  ArrayList<Post> values;
 
-    //public MyListViewAdapter(Context context, ArrayList<Threads> objects) {
-    public MyListViewAdapter(Context context, ArrayList<Post> objects) {
-        super(context, R.layout.thread_item, objects);
+    //public PostsAdapter(Context context, ArrayList<Thread> objects) {
+    public PostsAdapter(Context context, ArrayList<Post> objects) {
+        super(context, R.layout.threads_item, objects);
         this.context=context;
         values=new ArrayList<Post>();
         values.addAll(objects);
@@ -33,7 +32,7 @@ public class MyListViewAdapter extends ArrayAdapter<Post> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.thread_item, parent, false);
+        View rowView = inflater.inflate(R.layout.threads_item, parent, false);
         TextView name=(TextView)rowView.findViewById(R.id.name);
         TextView date=(TextView)rowView.findViewById(R.id.date);
         TextView number=(TextView)rowView.findViewById(R.id.number);
