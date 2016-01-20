@@ -2,11 +2,13 @@ package com.example.forchanclient;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.forchanclient.Adapters.PostsAdapter;
@@ -41,6 +43,10 @@ public class ThreadsScreenActivity extends AppCompatActivity {
         threadlistView=(ListView) findViewById(R.id.listOfThreads);
 
         boardhello.append(boardname+"/");
+        ProgressBar progressBar = new ProgressBar(this);
+        progressBar.setIndeterminate(true);
+        threadlistView.setEmptyView(progressBar);
+
 
         new ParseTask().execute();
 

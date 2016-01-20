@@ -93,6 +93,7 @@
             android:layout_below="@+id/lblPostNumber"
             android:layout_alignLeft="@+id/lblPostNumber"
             android:layout_alignStart="@+id/lblPostNumber"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:scaleType="fitStart"/>
     </RelativeLayout>
 </LinearLayout>

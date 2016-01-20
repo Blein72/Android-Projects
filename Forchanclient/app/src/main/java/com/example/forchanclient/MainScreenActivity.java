@@ -34,8 +34,8 @@ public class MainScreenActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
 
-        info=(TextView)findViewById(R.id.TextViewTopHeader);
-        boardsListView=(ListView)findViewById(R.id.boardsListView);
+        info = (TextView) findViewById(R.id.TextViewTopHeader);
+        boardsListView = (ListView) findViewById(R.id.boardsListView);
         //info.append(" initialized");
 
         new ParseTask().execute();
@@ -45,15 +45,16 @@ public class MainScreenActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
                                     long id) {
-               //TextView test= (TextView)itemClicked.findViewById(R.id.boardName);
-                Board board1=(Board)adapter.getItem(position);
-                Intent intent=new Intent(MainScreenActivity.this,ThreadsScreenActivity.class);
-                intent.putExtra("boardname",board1.board);
+                //TextView test= (TextView)itemClicked.findViewById(R.id.boardName);
+                Board board1 = (Board) adapter.getItem(position);
+                Intent intent = new Intent(MainScreenActivity.this, ThreadsScreenActivity.class);
+                intent.putExtra("boardname", board1.board);
                 //info.append(board1.board);
                 startActivity(intent);
             }
         });
     }
+
     private class ParseTask extends AsyncTask<Void, Void, String> {
 
         HttpURLConnection urlConnection = null;
@@ -93,12 +94,12 @@ public class MainScreenActivity extends Activity {
         @Override
         protected void onPostExecute(String strJson) {
             super.onPostExecute(strJson);
-            GsonBuilder builder=new GsonBuilder();
-            Gson gson=builder.create();
+            GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
 
             boards = gson.fromJson(strJson, Boards.class);
 
-            adapter=new BoardListViewAdapter(MainScreenActivity.this, boards.boards);
+            adapter = new BoardListViewAdapter(MainScreenActivity.this, boards.boards);
             boardsListView.setAdapter(adapter);
 
         }

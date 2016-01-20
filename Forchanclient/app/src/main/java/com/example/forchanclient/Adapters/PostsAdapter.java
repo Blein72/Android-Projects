@@ -3,8 +3,10 @@ package com.example.forchanclient.Adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 
 import com.example.forchanclient.Post;
 import com.example.forchanclient.R;
+import com.example.forchanclient.Thread;
+import com.squareup.picasso.Picasso;
 
 
 import java.io.InputStream;
@@ -29,7 +33,7 @@ public class PostsAdapter extends ArrayAdapter<Post> {
     private  ArrayList<Post> values;
     private String board;
     private String siteurl;
-    private ImageView picture;
+
 
     //public PostsAdapter(Context context, ArrayList<Thread> objects) {
     public PostsAdapter(Context context, ArrayList<Post> objects,String boardname) {
@@ -40,31 +44,48 @@ public class PostsAdapter extends ArrayAdapter<Post> {
         values.addAll(objects);
 
     }
+    static class ViewHolder {
+        public ImageView picture;
+        public TextView name;
+        public TextView date;
+        public TextView number;
+        public TextView comment;
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.threads_item, parent, false);
-        TextView name=(TextView)rowView.findViewById(R.id.name);
-        TextView date=(TextView)rowView.findViewById(R.id.date);
-        TextView number=(TextView)rowView.findViewById(R.id.number);
-        TextView comment=(TextView)rowView.findViewById(R.id.comment);
-        picture=(ImageView)rowView.findViewById(R.id.Picture);
-        picture.setMaxWidth(values.get(position).th_w);
-        picture.setMaxHeight(values.get(position).th_h);
-        if (values.get(position).tim!=null) {
+        holder = new ViewHolder();
+        holder.name=(TextView)rowView.findViewById(R.id.name);
+        holder.date=(TextView)rowView.findViewById(R.id.date);
+        holder.number=(TextView)rowView.findViewById(R.id.number);
+        holder.comment=(TextView)rowView.findViewById(R.id.comment);
+        holder.picture=(ImageView)rowView.findViewById(R.id.Picture);
+        rowView.setTag(holder);
+
+
+        //TextView name=(TextView)rowView.findViewById(R.id.name);
+        //TextView date=(TextView)rowView.findViewById(R.id.date);
+       // TextView number=(TextView)rowView.findViewById(R.id.number);
+       // TextView comment=(TextView)rowView.findViewById(R.id.comment);
+       //ImageView picture=(ImageView)rowView.findViewById(R.id.Picture);
+        holder.picture.setMaxWidth(values.get(position).th_w);
+        holder.picture.setMaxHeight(values.get(position).th_h);
+        if (values.get(position).ext!=null&&((values.get(position).ext.equals(".jpg"))|(values.get(position).ext.equals(".png")))) {
             siteurl="https://i.4cdn.org/" + board + "/" + values.get(position).tim.toString() + values.get(position).ext;
-            new DownloadImageTask(picture)
-                    .execute(siteurl);
+            new DownloadImageTask(holder.picture,siteurl).execute();
+        //Picasso.with(context).load(siteurl).fit().into(holder.picture);
+       }
 
-
-            //picture.setImageURI(Uri.parse("https://i.4cdn.org/" + board + "/" + values.get(position).tim.toString() + values.get(position).ext));
-        }
         //comment.setText("https://i.4cdn.org/"+board+"/"+values.get(position).tim+values.get(position).ext);
-        name.setText(values.get(position).name);
-        date.setText(values.get(position).now);
-        number.setText(values.get(position).no);
-        comment.setText(Html.fromHtml(values.get(position).com));
+        holder.name.setText(values.get(position).name);
+        holder.date.setText(values.get(position).now);
+        holder.number.setText(values.get(position).no);
+        holder.comment.setText(values.get(position).com);
+        holder.comment.setText(Html.fromHtml(values.get(position).com));
+        //SystemClock.sleep(1000);
 
         return rowView;
 
@@ -73,16 +94,18 @@ public class PostsAdapter extends ArrayAdapter<Post> {
     }
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
+        String url;
 
-        public DownloadImageTask(ImageView bmImage) {
+        public DownloadImageTask(ImageView bmImage,String url) {
             this.bmImage = bmImage;
+            this.url = url;
         }
 
         protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
+
             Bitmap mIcon11 = null;
             try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
+                InputStream in = new java.net.URL(url).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
@@ -92,7 +115,11 @@ public class PostsAdapter extends ArrayAdapter<Post> {
         }
 
         protected void onPostExecute(Bitmap result) {
-            picture.setImageBitmap(result);
+            final int THUMBSIZE = 300;
+
+            Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(result,
+                    THUMBSIZE, THUMBSIZE);
+            bmImage.setImageBitmap(ThumbImage);
         }
     }
 }
