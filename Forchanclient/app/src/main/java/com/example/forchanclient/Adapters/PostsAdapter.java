@@ -75,8 +75,10 @@ public class PostsAdapter extends ArrayAdapter<Post> {
         holder.picture.setMaxHeight(values.get(position).th_h);
         if (values.get(position).ext!=null&&((values.get(position).ext.equals(".jpg"))|(values.get(position).ext.equals(".png")))) {
             siteurl="https://i.4cdn.org/" + board + "/" + values.get(position).tim.toString() + values.get(position).ext;
-            new DownloadImageTask(holder.picture,siteurl).execute();
-        //Picasso.with(context).load(siteurl).fit().into(holder.picture);
+          //  new DownloadImageTask(holder.picture,siteurl).execute();
+            holder.picture.setMaxHeight(values.get(position).th_h);
+            holder.picture.setMaxWidth(values.get(position).th_w);
+        Picasso.with(context).load(siteurl).into(holder.picture);
        }
 
         //comment.setText("https://i.4cdn.org/"+board+"/"+values.get(position).tim+values.get(position).ext);
@@ -84,7 +86,9 @@ public class PostsAdapter extends ArrayAdapter<Post> {
         holder.date.setText(values.get(position).now);
         holder.number.setText(values.get(position).no);
         holder.comment.setText(values.get(position).com);
-        holder.comment.setText(Html.fromHtml(values.get(position).com));
+        if(values.get(position).com!=null) {
+            holder.comment.setText(Html.fromHtml(values.get(position).com));
+        }
         //SystemClock.sleep(1000);
 
         return rowView;
